@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Аудентификация</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/auth.css' %}">
+    <script type="application/javascript" src="{% static 'js/auth.js' %}"></script>
+</head>
+<body>
+    <div class="bform py-5">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="col-lg-6 align-justify-center pr-4 pl-0 contact-form">
+                    <div class="">
+                        <h2 class="mb-3 font-weight-light">Регистрация в партнерский кабинет varline</h2>
+                        <h6 class="subtitle font-weight-normal">Начни получать прибыль с привлечения трафика!</h6>
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                        <form id="register" method="post" class="mt-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="username" type="text" placeholder="nickname">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" type="email" placeholder="email address">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="phone" type="text" placeholder="phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="site" type="text" placeholder="site">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="password" type="password" placeholder="password">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="password2" type="password" placeholder="confirm password" oninput="check_password()">
+                                    </div>
+                                </div>
+                                <input hidden name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                                <input hidden name="auth_type" value="register">
+                                <div class="col-lg-12">
+                                    <button id="butreg" disabled type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"><span>Создать аккаунт</span></button>
+                                </div>
+                            </div>
+                        </form>
+                        <form id="login" method="post" class="mt-3" hidden>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="username" type="text" placeholder="nickname or email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="password" type="password" placeholder="password">
+                                    </div>
+                                </div>
+                                <input hidden name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                                <input hidden name="auth_type" value="login">
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"><span>Войти в аккаунт</span></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="reg" class="row">
+                            <div class="col-lg-12 text-center mt-4"></div>
+                            <div class="col-lg-12 text-center mt-4">Уже есть аккаунт?
+                                <a href="#" class="text-danger" onclick="reform(false)">Войти</a>
+                            </div>
+                        </div>
+                        <div id="log" class="row" hidden>
+                            <div class="col-lg-12 text-center mt-4"></div>
+                            <div class="col-lg-12 text-center mt-4">Нет аккаунта?
+                                <a href="#" class="text-danger" onclick="reform(true)">Зарегистрироваться</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <script>reform({{log}})</script>
+</body>
+</html>

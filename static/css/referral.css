@@ -1,0 +1,29 @@
+
+main {
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.hello {
+    background: #f7f7f7b3;
+    height: 180px;
+}
+
+.hello-man {
+    margin-top: 40%;
+}
+
+.side_left {
+    position: absolute;
+    z-index: 15;
+    margin-left: 5%;
+    width: 15%;
+}
+
+.side_right {
+    position: absolute;
+    z-index: 15;
+    margin-left: 80%;
+    width: 15%;
+}

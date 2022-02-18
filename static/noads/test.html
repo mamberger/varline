@@ -1,0 +1,236 @@
+<html>
+  <head>
+    <script src="/cdn-cgi/apps/head/UhvBep1c_cb9RFGtTW33Lb_JmCg.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script id="chatBroEmbedCode">
+      function ChatbroLoader(chats, async) {
+        async = !1 !== async;
+        var params = {
+            embedChatsParameters: chats instanceof Array ? chats : [chats],
+            lang: navigator.language || navigator.userLanguage,
+            needLoadCode: 'undefined' == typeof Chatbro,
+            embedParamsVersion: localStorage.embedParamsVersion,
+            chatbroScriptVersion: localStorage.chatbroScriptVersion,
+          },
+          xhr = new XMLHttpRequest();
+        (xhr.withCredentials = !0),
+          (xhr.onload = function () {
+            eval(xhr.responseText);
+          }),
+          (xhr.onerror = function () {
+            console.error('Chatbro loading error');
+          }),
+          xhr.open(
+            'GET',
+            '//www.chatbro.com/embed.js?' +
+              btoa(unescape(encodeURIComponent(JSON.stringify(params)))),
+            async,
+          ),
+          xhr.send();
+      }
+
+      function uuidv4() {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+          (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16),
+        );
+      }
+
+      function getChatId() {
+        if (localStorage['_ym_uid'] != undefined) {
+          return JSON.parse(localStorage['_ym_uid']);
+        } else if (localStorage['chat_uid'] != undefined) {
+          return localStorage['chat_uid'];
+        } else {
+          localStorage['chat_uid'] = uuidv4();
+          return localStorage['chat_uid'];
+        }
+      }
+      function checkChatName(name = localStorage['chat_name']) {
+        if (name != undefined) {
+          console.log('ChatbroLoader_Auth', !false);
+          ChatbroLoader({
+            siteDomain: location.hostname,
+            siteUserExternalId: getChatId(),
+            siteUserFullName: name,
+            containerDivId: 'chatbro',
+            encodedChatId: '18KkN',
+          });
+        } else {
+          console.log('ChatbroLoader_Auth', false);
+          ChatbroLoader({ containerDivId: 'chatbro', encodedChatId: '18KkN' });
+        }
+      }
+      function showGetName() {
+        const { value: username } = Swal.fire({
+          title: 'Пожалуйста введите ник',
+          input: 'text',
+          inputPlaceholder: 'Вася Пупкин',
+          showCancelButton: false,
+          inputValidator: (value) => {
+            if (!value || value.length < 4) {
+              return 'Пожалуйста введите ник, не менее 4 символов!';
+            } else {
+              localStorage['chat_name'] = value;
+              ChatbroLoader({
+                siteDomain: location.hostname,
+                siteUserExternalId: getChatId(),
+                siteUserFullName: value,
+                containerDivId: 'chatbro',
+                encodedChatId: '18KkN',
+              });
+            }
+          },
+        });
+      }
+      checkChatName();
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless/borderless.css"
+      id="theme-styles"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+  </head>
+
+  <body style="margin: -1px 0px 0px 0px; font-family: 'Montserrat', sans-serif">
+    <iframe
+      style="border: none; width: 100%; height: 400px"
+      class="embed-responsive-item"
+      src="https://vm-d7240840.na4u.ru/tw_bypass_m3.html#57624fb9b5c3ac6b01ba3ea8a90f239a"
+      allow="autoplay;"
+      autoplay="1"
+      allowfullscreen=""
+    ></iframe>
+    <div style="background: #ff3e3e; height: 5px"></div>
+    <div id="chatbro"></div>
+
+    <style>
+      @media (max-width: 500px) {
+        .chatbro_guest_avatar,
+        .chatbro_fake_guest_avatar {
+          width: 64px;
+          height: 64px;
+        }
+        .chatbro_header .chatbro_chat_name {
+          font-size: 35px;
+          padding: 6px 25px;
+        }
+        .chatbro_header .chatbro_header_button {
+          width: 70px;
+          font-size: 35px;
+        }
+        .chatbro_header .chatbro_participant_ico {
+          font-size: 24px;
+          margin-right: 10px;
+          top: 1px;
+        }
+        .chatbro_header .chatbro_minimize_button:before {
+          top: 0;
+          font-size: 30px;
+        }
+        .chatbro_header .chatbro_participant_count {
+          font-size: 35px;
+          top: 2px;
+        }
+        .chatbro_header {
+          height: 60px;
+        }
+        .chatbro_guest_avatar,
+        .chatbro_fake_guest_avatar {
+          font-size: 22px;
+          line-height: 51px;
+          width: 52px;
+          height: 52px;
+          margin: 5px 7px 0 7px;
+        }
+        .chatbro_messages .chatbro_message td,
+        .chatbro_fake_messages .chatbro_message td,
+        .chatbro_messages .chatbro_fake_message td,
+        .chatbro_fake_messages .chatbro_fake_message td {
+          padding: 8px 2px 8px !important;
+          margin: 5px 0;
+        }
+        .chatbro_messages .chatbro_message_auth_name,
+        .chatbro_fake_messages .chatbro_message_auth_name,
+        .chatbro_messages .chatbro_fake_message_auth_name,
+        .chatbro_fake_messages .chatbro_fake_message_auth_name,
+        .chatbro_messages .chatbro_message_reply_auth_name,
+        .chatbro_fake_messages .chatbro_message_reply_auth_name {
+          font-size: 32px;
+          line-height: 35px;
+        }
+        .chatbro_messages .chatbro_message_text,
+        .chatbro_fake_messages .chatbro_message_text,
+        .chatbro_messages .chatbro_fake_message_text,
+        .chatbro_fake_messages .chatbro_fake_message_text {
+          font-size: 26px;
+        }
+        .chatbro_messages .chatbro_message_user_type,
+        .chatbro_fake_messages .chatbro_message_user_type,
+        .chatbro_messages .chatbro_fake_message_user_type,
+        .chatbro_fake_messages .chatbro_fake_message_user_type,
+        .chatbro_messages .chatbro_dropdown_user_type,
+        .chatbro_fake_messages .chatbro_dropdown_user_type {
+          font-size: 20px;
+        }
+        .chatbro_send .chatbro_send_input_block .chatbro_send_button,
+        .chatbro_send .chatbro_send_input_block .chatbro_open_smiles_button {
+          font-size: 30px;
+          width: 70px;
+          height: 0;
+          top: 6px;
+        }
+        .chatbro_send .chatbro_send_input_block .chatbro_open_smiles_button {
+          font-size: 30px;
+          width: 30px;
+          height: 0;
+        }
+        .chatbro_send .chatbro_send_input_block label.chatbro_open_upload_button:before {
+          top: 7px;
+          font-size: 25px;
+        }
+        .chatbro_send .chatbro_send_input_block .chatbro_send_input_wrapper .chatbro_send_input {
+          padding: 0 !important;
+        }
+        .chatbro_body .chatbro_messages_wrapper,
+        .chatbro_body .chatbro_messages_preload {
+          min-height: 110% !important;
+        }
+
+        .chatbro_send .chatbro_send_input_block {
+          top: 100%;
+          position: relative;
+        }
+        .chatbro_send {
+          top: 100%;
+        }
+        iframe {
+          height: 400px;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener('chatLoaded', function (event) {
+        if (localStorage.embedParamsVersion == undefined) {
+          ChatbroLoader({ containerDivId: 'chatbro', encodedChatId: '18KkN' });
+        }
+        if (event.chat.isSiteLogin == false && window.location.href.indexOf('?auth') != -1) {
+          showGetName();
+        }
+        if (event.chat.isSiteLogin == false) {
+          document.addEventListener('chatInputClick', function (event) {
+            window.echat = event.chat;
+
+            if (echat.isSiteLogin == false) {
+              showGetName();
+            } else {
+              return event;
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

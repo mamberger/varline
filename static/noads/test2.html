@@ -1,0 +1,113 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless/borderless.css" id="theme-styles"></link>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"></link>
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>	
+
+.myvideo {
+position:relative;
+padding: 0 0 56.25% 0;
+height:10%;
+overflow:hidden;
+}
+.myvideo iframe,.myvideo object,.myvideo embed {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+</style>	
+	
+	
+	
+</head>
+
+     <body>
+	 
+	 <div class="myvideo">
+
+        <iframe width="100%" height="100%" class="embed-responsive-item"
+        src="https://vm-d7240840.na4u.ru/tw_bypass_m3.html#916a04ea83facdca62bf9982042a5252" allow="no;" autoplay="1" allowfullscreen="" frameborder="0" scrolling="no"></iframe></div>
+    <div style=" background: #ff3e3e; height: 5px; "></div>
+    <div id="chatbro"></div></div>
+
+
+    <script>
+
+        document.addEventListener('chatLoaded', function (event) {
+            if (localStorage.embedParamsVersion == undefined) {
+                ChatbroLoader({ containerDivId: "chatbro", encodedChatId: '18KkN' });
+            }
+            if (event.chat.isSiteLogin == false && window.location.href.indexOf("?auth") != -1) {
+                showGetName()
+            }
+            if (event.chat.isSiteLogin == false) {
+                document.addEventListener('chatInputClick', function (event) {
+                    window.echat = event.chat;
+
+                    if (echat.isSiteLogin == false) {
+                        showGetName()
+                    } else { return event; }
+
+
+                });
+            }
+        });
+    </script>
+
+<script id="chatBroEmbedCode">
+
+        function ChatbroLoader(chats, async) { async = !1 !== async; var params = { embedChatsParameters: chats instanceof Array ? chats : [chats], lang: navigator.language || navigator.userLanguage, needLoadCode: 'undefined' == typeof Chatbro, embedParamsVersion: localStorage.embedParamsVersion, chatbroScriptVersion: localStorage.chatbroScriptVersion }, xhr = new XMLHttpRequest; xhr.withCredentials = !0, xhr.onload = function () { eval(xhr.responseText) }, xhr.onerror = function () { console.error('Chatbro loading error') }, xhr.open('GET', '//www.chatbro.com/embed.js?' + btoa(unescape(encodeURIComponent(JSON.stringify(params)))), async), xhr.send() }
+        function uuidv4() {
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+        function getChatId() {
+            if (localStorage["_ym_uid"] != undefined) {
+                return JSON.parse(localStorage["_ym_uid"])
+            } else if (localStorage["chat_uid"] != undefined) {
+                return localStorage["chat_uid"];
+            } else {
+                localStorage["chat_uid"] = uuidv4();
+                return localStorage["chat_uid"];
+            }
+        }
+        function checkChatName(name = localStorage["chat_name"]) {
+            if (name != undefined) {
+                console.log("ChatbroLoader_Auth", !false)
+                ChatbroLoader({ siteDomain: location.hostname, siteUserExternalId: getChatId(), siteUserFullName: name, containerDivId: "chatbro", encodedChatId: '18KkN' });
+            } else {
+                console.log("ChatbroLoader_Auth", false)
+                ChatbroLoader({ containerDivId: "chatbro", encodedChatId: '18KkN' });
+            }
+        }
+        function showGetName() {
+            const { value: username } = Swal.fire({
+                title: 'Пожалуйста введите ник',
+                input: 'text',
+                inputPlaceholder: 'Вася Пупкин',
+                showCancelButton: false,
+                inputValidator: (value) => {
+                    if (!value || value.length < 4) {
+                        return 'Пожалуйста введите ник, не менее 4 символов!'
+                    } else {
+                        localStorage["chat_name"] = value;
+                        ChatbroLoader({ siteDomain: location.hostname, siteUserExternalId: getChatId(), siteUserFullName: value, containerDivId: "chatbro", encodedChatId: '18KkN' });
+                    }
+                }
+            })
+        }
+        checkChatName()
+    </script>
+
+
+
+
+</body>
+</html>

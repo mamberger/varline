@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru" dir="ltr">
+<head>
+    <link rel="stylesheet" type="text/css" href="https://www.chatbro.com/css/chatbro.css?1638553346293">
+    <link rel="stylesheet" type="text/css" href="https://www.chatbro.com/css/view_chat.css?1638553346293">
+    <title> Чат </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://itchief.ru//examples/libs/jquery/jquery-3.x.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless/borderless.css" id="theme-styles">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+
+<body style="overflow: hidden;">
+
+    <display_data hidden>
+        <height></height>
+        <width></width>
+        <script>
+            document.getElementsByTagName('height')[0].innerText = document.documentElement.clientHeight;
+            document.getElementsByTagName('width')[0].innerText = document.documentElement.clientWidth;
+        </script>
+        <init>true</init>
+    </display_data>
+
+    <div hidden class="containter-fluid" style="color:black;">
+        <div class="row p-1">
+            <div class="text-center">
+                <img src="{{home_logo}}" style="width:20px;">
+                <b>{{title}}</b>
+                <img src="{{away_logo}}" style="width:20px;">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col"><small id="status" style="font-size:10px;">{{status}}</small></div>
+            <div class="col">
+                <small><b id="score">{{score}}</b></small>
+                <small style="font-size:10px;"><b id="periods">{{periods}}</b></small>
+            </div>
+            <div class="col"><small id="time" style="font-size:10px; color:red;">{{time}}</small></div>
+        </div>
+    </div>
+    <a href="/main/" style="position:absolute; z-index: 10; padding-left: 88.5%; padding-top: 3.5%">
+       <div class="x" style="
+            background: #0000009c;
+            border-radius: 15px;
+            padding: 3px;
+        ">
+        <img src="{% static 'img/baseline_close_white_24dp.png' %}">
+    </div>
+    </a>
+    <div class="row">
+        <iframe style="border: none;width: 100%;height: 215px;" class="embed-responsive-item"
+            src="{{ stream }}" allow="autoplay;"
+            autoplay="1" allowfullscreen="">
+        </iframe>
+    </div>
+    <script id="chatBroEmbedCode">
+
+        function ChatbroLoader(chats, async) {
+            async = !1 !== async;
+            var params = {
+                embedChatsParameters: chats instanceof Array ? chats : [chats],
+                lang: navigator.language || navigator.userLanguage,
+                needLoadCode: 'undefined' == typeof Chatbro,
+                embedParamsVersion: localStorage.embedParamsVersion,
+                chatbroScriptVersion: localStorage.chatbroScriptVersion },
+                xhr = new XMLHttpRequest; xhr.withCredentials = !0,
+                xhr.onload = function () { eval(xhr.responseText) },
+                xhr.onerror = function () { console.error('Chatbro loading error') },
+                xhr.open('GET', '//www.chatbro.com/embed.js?' + btoa(unescape(encodeURIComponent(JSON.stringify(params)))), async), xhr.send()
+            }
+        function uuidv4() {
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+        function getChatId() {
+            if (localStorage["_ym_uid"] != undefined) {
+                return JSON.parse(localStorage["_ym_uid"])
+            } else if (localStorage["chat_uid"] != undefined) {
+                return localStorage["chat_uid"];
+            } else {
+                localStorage["chat_uid"] = uuidv4();
+                return localStorage["chat_uid"];
+            }
+        }
+        function checkChatName(name = localStorage["chat_name"]) {
+            if (name != undefined) {
+                console.log("ChatbroLoader_Auth", !false)
+                ChatbroLoader({
+                    siteDomain: location.hostname,
+                    siteUserExternalId: getChatId(),
+                    siteUserFullName: name,
+                    containerDivId: "chatbro",
+                    parentEncodedChatId: '18KkN',
+                    chatTitle: 'Чат',
+                    extId: '{{event_id}}',
+                    allowMinimizeChat: false,
+                    allowMoveChat: false,
+                    chatState: 'maximized',
+                    chatHeight: 'calc(100% - 215px)',
+                    chatWidth: '100%',
+                    chatTopLeftBorderRadius: '0px',
+                    chatTopRightBorderRadius: '0px',
+                    chatBottomRightBorderRadius: '0px',
+                    chatBottomLeftBorderRadius: '0px'
+                });
+            } else {
+                console.log("ChatbroLoader_Auth", false)
+                ChatbroLoader({
+                    containerDivId: "chatbro",
+                    parentEncodedChatId: '18KkN',
+                    chatTitle: 'Чат',
+                    extId: '{{event_id}}',
+                    allowMinimizeChat: false,
+                    allowMoveChat: false,
+                    chatState: 'maximized',
+                    chatHeight: 'calc(100% - 215px)',
+                    chatWidth: '100%',
+                    chatTopLeftBorderRadius: '0px',
+                    chatTopRightBorderRadius: '0px',
+                    chatBottomRightBorderRadius: '0px',
+                    chatBottomLeftBorderRadius: '0px'
+                });
+            }
+        }
+        function showGetName() {
+            const { value: username } = Swal.fire({
+                title: 'Пожалуйста введите ник',
+                input: 'text',
+                inputPlaceholder: 'Вася Пупкин',
+                showCancelButton: false,
+                inputValidator: (value) => {
+                    if (!value || value.length < 4) {
+                        return 'Пожалуйста введите ник, не менее 4 символов!'
+                    } else {
+                        localStorage["chat_name"] = value;
+                        ChatbroLoader({
+                            siteDomain: location.hostname,
+                            siteUserExternalId: getChatId(),
+                            siteUserFullName: value,
+                            containerDivId: "chatbro",
+                            parentEncodedChatId: '18KkN',
+                            chatTitle: 'Чат',
+                            extId: '{{event_id}}',
+                            allowMinimizeChat: false,
+                            allowMoveChat: false,
+                            chatState: 'maximized',
+                            chatHeight: 'calc(100% - 215px)',
+                            chatWidth: '100%',
+                            chatTopLeftBorderRadius: '0px',
+                            chatTopRightBorderRadius: '0px',
+                            chatBottomRightBorderRadius: '0px',
+                            chatBottomLeftBorderRadius: '0px'
+                        });
+                    }
+                }
+            })
+        }
+        checkChatName()
+    </script>
+    <script>
+        document.addEventListener('chatLoaded', function (event) {
+            if (localStorage.embedParamsVersion == undefined) {
+                ChatbroLoader({
+                    parrentEncodedChatId: '18KkN',
+                    chatTitle: 'Чат',
+                    extId: '{{event_id}}',
+                    containerDivId: 'chat',
+                    allowMoveChat: false,
+                    allowMinimizeChat: false,
+                    chatState: 'maximized',
+                    siteDomain: 'chatbro.com',
+                    chatHeight: 'calc(100% - 215px)',
+                    chatWidth: '100%',
+                    allowUploadFile: true,
+                    chatTopLeftBorderRadius: '0px',
+                    chatTopRightBorderRadius: '0px',
+                    chatBottomRightBorderRadius: '0px',
+                    chatBottomLeftBorderRadius: '0px'
+                });
+            }
+            if (event.chat.isSiteLogin == false && window.location.href.indexOf("?auth") != -1) {
+                showGetName()
+            }
+            if (event.chat.isSiteLogin == false) {
+                document.addEventListener('chatInputClick', function (event) {
+                    window.echat = event.chat;
+
+                    if (echat.isSiteLogin == false) {
+                        showGetName()
+                    } else { return event; }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        .chatbro_body,
+        .chatbro_bottom_border {
+            border: none !important;
+        }
+    </style>
+
+    <div id="chatbro" class="container-flud" style="height:100%"></div>
+
+    <style>.chatbro_send_input {width: 120%;}</style>
+
+    <script>
+        function check_display() {
+            height = document.getElementsByTagName('height')[0].innerText;
+            width = document.getElementsByTagName('width')[0].innerText;
+            now_h = document.documentElement.clientHeight;
+            now_w = document.documentElement.clientWidth;
+            iframe_height = 215
+            init = document.getElementsByTagName('init')[0].innerText
+            if (height != now_h || init == 'true') {
+                document.getElementsByTagName('init')[0].innerText = 'false'
+                document.getElementsByTagName('height')[0].innerText = now_h
+                document.getElementsByTagName('width')[0].innerText = now_w
+                if (now_h < 453) {
+                    iframe_height = now_h - 238
+                    document.getElementsByTagName('iframe')[0].style['height'] = iframe_height + 'px'
+                } else {
+                    document.getElementsByTagName('iframe')[0].style['height'] = iframe_height + 'px'
+                };
+                chatbro_header = document.getElementsByClassName('chatbro_header chatbro_maximized_header')[0]
+                if (chatbro_header != undefined) {
+                    chatbro_header = chatbro_header.offsetHeight
+                    chatbro_futer = document.getElementsByClassName('chatbro_send')[0].offsetHeight
+                    chat_height = now_h - iframe_height - chatbro_header - chatbro_futer
+                    chat = document.getElementsByClassName('chatbro_messages_wrapper')[0]
+                    chat.style['height'] = chat_height + 'px'
+                    chat.scrollTop = 9999
+                };
+            };
+            document.documentElement.scrollTop = 0
+        };
+        setInterval(check_display, 1000)
+    </script>
+
+    <script>
+        function check_session() {
+            $.post(
+                '/api/check_session/',
+                {csrfmiddlewaretoken: '{{csrf_token}}'},
+                function () {}
+            );
+        };
+        setInterval(check_session, 40000)
+    </script>
+
+</body>
+
+</html>

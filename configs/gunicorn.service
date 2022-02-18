@@ -1,0 +1,10 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+WorkingDirectory=/home/varline
+ExecStart=gunicorn  --config  configs/gunicorn.conf.py    settings.asgi:application
+
+[Install]
+WantedBy=multi-user.target

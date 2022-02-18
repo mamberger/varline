@@ -1,0 +1,50 @@
+.row {
+    --bs-gutter-x: 0.1rem;
+    background: #423189;
+}
+
+.col {
+    background: #423189;
+}
+
+.progress-bar {
+   height: 5px;
+   background: #FFF;
+   z-index: 1;
+}
+.progress-bar .bar {
+   height: 100%;
+   background: #423189;
+   width: 0%;
+}
+.progress-bar .moving {
+   width: 100%;
+   transition: width 5s linear;
+}
+.progress-bar .fade-out {
+    transition: opacity 0.6s linear;
+    opacity: 0;
+}
+
+.close-modal {
+    background: #2F4F4F;
+    color: #FFFFFF;
+    position: absolute;
+    right: 15px;
+    text-align: center;
+    top: 35px;
+    width: 26px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.news {
+    margin-top: 60px;
+    font-size: 15px;
+}
+
+.news > h5 {
+    text-align: center;
+}

@@ -1,0 +1,57 @@
+.chat-scrollbar {
+    position: relative;
+    overflow-y: auto;
+    display: block;
+    font-size: 10px;
+}
+
+.close {
+    color: black;
+    position: sticky;
+    width: auto;
+}
+
+body, .ui-page-theme-a {
+    background-color: #fff;
+    font-size: 14px;
+    color: #000;
+    text-shadow: none;
+    display: block;
+    -o-shadow: 0 0 10px 5px #ccc;
+    padding: 0;
+    margin: 0 auto;
+    background: url(https://johncms.com/upload/mail/666.png) repeat-x;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: -webkit-gradient(linear,left top,right top,from(#c04848),to(#2e022e));
+    background-image: -webkit-linear-gradient(left,#c04848,#2e022e);
+    background-image: -o-linear-gradient(left,#c04848,#2e022e);
+    background-image: linear-gradient(to right,#c04848,#2e022e);
+}
+
+.ui-page-theme-a {
+    text-shadow: none;
+}
+
+div, .ui-input-text {
+    margin: 0px;
+}
+
+.ui-input-text input {
+    background: white;
+    -webkit-border-radius: initial;
+    border-radius: initial;
+}
+
+.event_link {
+    width: 100%;
+    background-color: #0000008c;
+    border-radius: 9px;
+    text-shadow: none;
+}
+
+.modal-footer {
+    display: block;
+    height: auto;
+}
